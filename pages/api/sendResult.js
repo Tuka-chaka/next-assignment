@@ -1,7 +1,7 @@
+
 import connect2db from '../../lib/mongodb';
 
-export default async function handler(
-) {
+export default async function handler(req, res) {
     if (req.method === 'POST') {
         const { _id, result } = req;
         await (await connect2db()).db

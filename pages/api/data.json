@@ -2,6 +2,7 @@
   [
     {"title": "тест1",
     "timeLimit": 3600,
+    "results": [],
     "questions": [{
       "text": "первый вопрос тест 1",
       "timeLimit": 60,
@@ -26,6 +27,7 @@
     }]},
     {"title": "тест2",
     "timeLimit": 3600,
+    "results": [],
     "questions": [{
       "text": "первый вопрос тест 2",
       "timeLimit": 60,

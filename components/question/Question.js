@@ -3,12 +3,12 @@ import styles from './Question.module.scss'
 import Button from '../buttons/Button'
 import { useState } from 'react'
 
-const Question = ({question, action}) => {
+const Question = ({question, action, onSubmit}) => {
 
   const [answer, setAnswer] = useState('')
   
   const submit = () => {
-    console.log(answer)
+    onSubmit(answer)
     action()
   }
 
