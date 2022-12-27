@@ -1,0 +1,37 @@
+$radioColor: #00EAD9;
+$radioInactive: #828282;
+$radioDisabled: #E0E0E0;
+
+.radio {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    .radio__outer {
+        border: 2px solid $radioInactive;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        box-sizing: border-box;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        &:hover, &.checked{
+            border-color: $radioColor;
+        }
+        &:not(.checked) .radio__dot {
+            visibility: hidden;
+        }
+        &.disabled {
+            border-color: $radioDisabled;
+        }
+        .radio__dot {
+            box-sizing: border-box;
+            border-radius: 50%;
+            background-color: $radioColor;
+            width: 10px;
+            height: 10px;
+        }
+        
+    }
+}

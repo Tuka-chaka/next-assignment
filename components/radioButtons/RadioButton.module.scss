@@ -1,0 +1,69 @@
+$radioColor: #00EAD9;
+$radioInactive: #828282;
+$radioDisabled: #E0E0E0;
+$white: #FFFFFF;
+
+.radioButton {
+    background-color: $white;
+    width: 400px;
+    cursor: pointer;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+    margin-bottom: 24px;
+    &:hover, &.checked &:not(.disabled){
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
+        .radio {
+            .radio__outer{
+                border-color: $radioColor;
+            }
+        }
+    }
+    &.checked {
+        box-shadow: 0px 0px 4px #BDBDBD;
+    }
+    &.disabled {
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.06);
+        .radio {
+            .radio__outer{
+                border-color: $radioDisabled;
+            }
+        }
+    }
+}
+.radio {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+    margin: 0px 16px 0px 12px;
+    .radio__outer {
+        border: 2px solid $radioInactive;
+        border-radius: 50%;
+        width: 18px;
+        height: 18px;
+        box-sizing: border-box;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        &:hover, &.checked{
+            border-color: $radioColor;
+        }
+        &:not(.checked) .radio__dot {
+            visibility: hidden;
+        }
+        &.disabled {
+            border-color: $radioDisabled;
+        }
+        .radio__dot {
+            box-sizing: border-box;
+            border-radius: 50%;
+            background-color: $radioColor;
+            width: 10px;
+            height: 10px;
+        }
+        
+    }
+}

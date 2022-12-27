@@ -1,0 +1,51 @@
+
+  [
+    {"title": "тест1",
+    "timeLimit": 3600,
+    "questions": [{
+      "text": "первый вопрос тест 1",
+      "timeLimit": 60,
+      "type": "radio",
+      "answers": [
+        {"text": "Неверно", "valid": false},
+        {"text": "Тоже Неверно", "valid": false},
+        {"text": "Верно", "valid": true},
+        {"text": "Опять Неверно", "valid": false}
+      ]
+    },
+    {
+      "text": "второй вопрос тест 1",
+      "timeLimit": 60,
+      "type": "radio",
+      "answers": [
+        {"text": "Неверно", "valid": false},
+        {"text": "Тоже Неверно", "valid": false},
+        {"text": "Опять Неверно", "valid": false},
+        {"text": "Верно", "valid": true}
+      ]
+    }]},
+    {"title": "тест2",
+    "timeLimit": 3600,
+    "questions": [{
+      "text": "первый вопрос тест 2",
+      "timeLimit": 60,
+      "type": "radio",
+      "answers": [
+        {"text": "Верно", "valid": true},
+        {"text": "Неверно", "valid": false},
+        {"text": "Тоже Неверно", "valid": false},
+        {"text": "Опять Неверно", "valid": false}
+      ]
+    },
+    {
+      "text": "второй вопрос тест 2",
+      "timeLimit": 60,
+      "type": "radio",
+      "answers": [
+        {"text": "Неверно", "valid": false},
+        {"text": "Верно", "valid": true},
+        {"text": "Тоже Неверно", "valid": false},
+        {"text": "Опять Неверно", "valid": false}
+      ]
+    }]}
+  ]

@@ -1,0 +1,12 @@
+.answers {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    .row {
+        display: flex;
+        flex-direction: row;
+        >:first-child{
+            margin-right: 24px;
+        }
+    }
+}

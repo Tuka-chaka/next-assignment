@@ -1,0 +1,41 @@
+.timer {
+    margin-top: 80px;
+    position: relative;
+    height: 150px;
+    width: 150px;
+  }
+  
+  .timer__circle {
+    fill: none;
+    stroke: none;
+  }
+  
+  .timer__path_elapsed {
+    stroke-width: 2px;
+    stroke: grey;
+  }
+
+  .timer__label {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  .timer__path_remaining {
+    stroke-width: 4px;
+    stroke-linecap: round;
+    transform: rotate(90deg);
+    transform-origin: center;
+    transition: 1s linear all;
+    stroke: #006666;
+  }
+  
+  .timer__svg {
+    /* Flips the svg and makes the animation to move left-to-right */
+    transform: scaleX(-1);
+  }
