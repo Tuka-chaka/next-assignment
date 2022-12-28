@@ -13,6 +13,7 @@ const id = router.query.questionId
   const test = props.tests[router.query.testId - 1]
   const [activeQuestion, setActiveQuestion] = useState(test.questions[id-1])
   const [results, setResults] = useState([])
+  console.log(results.map(res => res.id))
 
 
   const submitToMongo = (value) => {
@@ -62,7 +63,7 @@ const id = router.query.questionId
       <div className={styles.container__inner}>
       <TestHeader testTheme={test.title} questionNumber={test.questions.findIndex((element) => element.text == activeQuestion.text) + 1 + '/' + test.questions.length}/>
       <Timer question={activeQuestion}/>
-      <Question question={activeQuestion} action={() => {}} onSubmit={(value) => submitToMongo(value)} isLast={!(id < test.questions.length)}/>
+      <Question question={activeQuestion} action={submitQuestion} onSubmit={(value) => submitToMongo(value)} isLast={!(id < test.questions.length)}/>
       </div>
     </div>
     :
@@ -70,7 +71,16 @@ const id = router.query.questionId
       <Sidebar questions={[]} action={changeActiveQuestion}/>
       <div className={styles.container__inner}>
       <TestHeader testTheme={test.title + ": результаты"} questionNumber={test.questions.length + '/' + test.questions.length}/>
-      {results.map(question => <div className={styles.result} key={question.id}>{`${question.id}. ${test.questions[question.id - 1].text} - ${question.answer == question.correctAnswer ? 'верно' : 'неверно'}`}<div className={styles.details}>{`Ваш ответ: ${question.answer}.    Правильный ответ: ${question.correctAnswer}`}</div></div>)}
+      {test.questions.map((q, id) =>
+         <div className={styles.result} key={id}>
+            {`${id+1}. ${q.text} - ${results.map(res => res.id).includes(String(id+1)) ? (results.find(res => res.id == id+1).answer == results.find(res => res.id == id+1).correctAnswer ? 'верно' : 'неверно'): 'неверно'}`}
+            <div className={styles.details}>
+              {results.map(res => res.id).includes(String(id+1)) ? 
+              `Ваш ответ: ${results.find(res => res.id == id+1).answer}. Правильный ответ: ${results.find(res => res.id == id+1).correctAnswer}` :
+              `Ваш ответ: нет ответа. Правильный ответ: ${q.answers.find(answer => answer.valid).text}`}
+              
+            </div>
+         </div>)}
       </div>
     </div>
   )

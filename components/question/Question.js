@@ -18,7 +18,7 @@ const Question = ({question, action, onSubmit, isLast}) => {
         <div className={styles.question__theme}>{question.text}</div>
         <Answers question={question} action={(value) => setAnswer(value)}/>
         <div className={styles.button__group}>
-        <Button text={'Пропустить'} disabled={isLast}/>
+        <Button text={'Пропустить'} action={action} disabled={isLast}/>
         <Button text={isLast ? 'Завершить' : 'Ответить'} action={submit}/>
         </div>
     </div>
