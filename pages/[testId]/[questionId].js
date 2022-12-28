@@ -17,22 +17,22 @@ const id = router.query.questionId
 
   const submitToMongo = (value) => {
     console.log(id)
-    
-    setResults(...results, [{id: activeQuestion.id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text}])
+    setResults(...results, [{id: id, answer: value, correctAnswer: test.questions[id].answers.find(answer => answer.valid).text}])
+    sendResults(value)
   }
 
   const sendResults = async (value) => {
-    console.log('whaaat')
+    console.log(test.title)
     let res = await fetch("http://localhost:3000/api/sendResult", {
       method: "POST",
       body: JSON.stringify({
-        _id: test._id,
-        result: value,
+        title: test.title,
+        result: results,
       })
     })
     res = await res.json();
-    setResults(...results, [{id: activeQuestion.id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text}])
-  }
+    console.log(res)
+    }
 
 
   const changeActiveQuestion = (id) => {

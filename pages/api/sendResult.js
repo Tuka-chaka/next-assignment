@@ -3,10 +3,13 @@ import connect2db from '../../lib/mongodb';
 
 export default async function handler(req, res) {
     if (req.method === 'POST') {
-        const { _id, result } = req;
+        const { title, result } = JSON.parse(req.body);
+        console.log(title)
+        console.log(await (await connect2db()).db
+        .collection('tests').findOne({title: title}))
         await (await connect2db()).db
             .collection('tests')
-            .updateOne({ _id }, { $push: { results: result } });
-        res.status(200);
+            .updateOne({ title: title }, { $set: { results: result } });
+        return res.json({property: 'value'});
     }
 }
