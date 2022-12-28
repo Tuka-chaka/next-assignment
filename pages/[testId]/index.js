@@ -7,6 +7,7 @@ import Timer from '../../components/timer/Timer';
 import Question from '../../components/question/question';
 import { useRouter } from 'next/router';
 import Button from '../../components/buttons/Button';
+import BigButton from '../../components/bigButtons/BigButton';
 
 export default function Home(props) {
 const router = useRouter()
@@ -19,7 +20,7 @@ const {testId} = router.query
       <Sidebar questions={[]}/>
       <div className={styles.container__inner}>
       <TestHeader testTheme={test.title} questionNumber={'x/x'}/>
-      <div className={styles.startButton}><Button text={'Начать тест'} action={() => router.push(`/${testId}/1`)}/></div>
+      <div className={styles.startButton}><BigButton text={'Начать тест'} action={() => router.push(`/${testId}/1`)}/></div>
       </div>
     </div>
 

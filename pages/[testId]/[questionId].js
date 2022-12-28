@@ -6,6 +6,8 @@ import Sidebar from '../../components/sidebar/Sidebar';
 import Timer from '../../components/timer/Timer';
 import Question from '../../components/question/question';
 import { useRouter } from 'next/router';
+import Button from '../../components/buttons/Button';
+import BigButton from '../../components/bigButtons/BigButton';
 
 export default function Home(props) {
 const router = useRouter()
@@ -77,7 +79,7 @@ const id = router.query.questionId
               
             </div>
          </div>)}
-         <div className={styles.startButton}></div>
+         <div className={styles.startButton}><BigButton text='повторить попытку' action={() => router.push('/' + router.query.testId)}/></div>
       </div>
     </div>
   )
