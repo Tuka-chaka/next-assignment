@@ -13,29 +13,24 @@ const id = router.query.questionId
   const test = props.tests[router.query.testId - 1]
   const [activeQuestion, setActiveQuestion] = useState(test.questions[id-1])
   const [results, setResults] = useState([])
-  console.log(results.map(res => res.id))
-
 
   const submitToMongo = (value) => {
-    console.log(value)
-    new Promise((resolve) => {
-      resolve(setResults([...results, {id: id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text}]))
-    }).then(sendResults(value))
+    let cloneResults = [...results]
+    while(cloneResults.map(res => res.id).includes(String(id))) {
+      cloneResults.splice(cloneResults.findIndex(res => res.id == id), 1)
+    }
+    console.log(id)
+    new Promise((resolve) => { 
+      resolve(setResults([...cloneResults, {id: id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text}]))
+    }).then(sendResults(value, cloneResults))
   }
 
-  const testSubmit = (value) => {
-    setResults(...results, {id: id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text})
-    console.log(results)
-    console.log({id: id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text})
-  }
-
-
-  const sendResults = async (value) => {
+  const sendResults = async (value, cloneResults) => {
     let res = await fetch("http://localhost:3000/api/sendResult", {
       method: "POST",
       body: JSON.stringify({
         title: test.title,
-        result: [...results, {id: id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text}],
+        result: [...cloneResults, {id: id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text}],
       })
     })
     res.json().then(submitQuestion())
