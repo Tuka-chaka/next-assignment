@@ -19,7 +19,7 @@ const {testId} = router.query
       <Sidebar questions={[]}/>
       <div className={styles.container__inner}>
       <TestHeader testTheme={test.title} questionNumber={'x/x'}/>
-      <Button text={'Начать тест'} action={() => router.push(`/${testId}/1`)}/>
+      <div className={styles.startButton}><Button text={'Начать тест'} action={() => router.push(`/${testId}/1`)}/></div>
       </div>
     </div>
 
