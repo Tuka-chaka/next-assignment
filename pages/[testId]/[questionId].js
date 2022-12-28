@@ -69,8 +69,8 @@ const id = router.query.questionId
     <div className={styles.container}>
       <Sidebar questions={[]} action={changeActiveQuestion}/>
       <div className={styles.container__inner}>
-      <TestHeader testTheme={test.title} questionNumber={test.questions.length + '/' + test.questions.length}/>
-      <div>{JSON.stringify(results)}</div>
+      <TestHeader testTheme={test.title + ": результаты"} questionNumber={test.questions.length + '/' + test.questions.length}/>
+      {results.map(question => <div className={styles.result} key={question.id}>{`${question.id}. ${test.questions[question.id - 1].text} - ${question.answer == question.correctAnswer ? 'верно' : 'неверно'}`}<div className={styles.details}>{`Ваш ответ: ${question.answer}.    Правильный ответ: ${question.correctAnswer}`}</div></div>)}
       </div>
     </div>
   )

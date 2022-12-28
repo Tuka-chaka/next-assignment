@@ -13,5 +13,17 @@
         background-position: bottom right; 
         background-repeat: no-repeat;
         background-size: cover;
+        .result {
+            width: 50%;
+            font-size: 20px;
+            text-align: left;
+            padding: 20px 0px;
+            height: 30px;
+            margin: 5px;
+            .details {
+                margin: 10px;
+                font-size: 15px;
+            }
+        }
     }
 }
