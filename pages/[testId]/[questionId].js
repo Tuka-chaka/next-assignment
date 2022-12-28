@@ -66,6 +66,7 @@ const id = router.query.questionId
       <Sidebar questions={[]} action={changeActiveQuestion}/>
       <div className={styles.container__inner}>
       <TestHeader testTheme={test.title + ": результаты"} questionNumber={test.questions.length + '/' + test.questions.length}/>
+      <div className={styles.summary}>Ваш результат: {results.filter(res => res.correctAnswer == res.answer).length}/{test.questions.length}</div>
       {test.questions.map((q, id) =>
          <div className={styles.result} key={id}>
             {`${id+1}. ${q.text} - ${results.map(res => res.id).includes(String(id+1)) ? (results.find(res => res.id == id+1).answer == results.find(res => res.id == id+1).correctAnswer ? 'верно' : 'неверно'): 'неверно'}`}
