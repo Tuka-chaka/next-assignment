@@ -3,13 +3,13 @@ import connect2db from '../../lib/mongodb';
 export default async function handler(
 ) {
     if (req.method === 'GET') {
-        const { id } = req;
+        const { title } = req;
         const results = (
             await (await connect2db()).db
                 .collection('tests')
-                .find({ id })
+                .find({ title })
                 .toArray()
         )[0].results;
-        res.status(200).json({ results });
+        return res.json({results});
     }
 }

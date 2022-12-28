@@ -24,6 +24,17 @@
         {"text": "Опять Неверно", "valid": false},
         {"text": "Верно", "valid": true}
       ]
+    },
+    {
+      "text": "третий вопрос тест 1",
+      "timeLimit": 60,
+      "type": "radio",
+      "answers": [
+        {"text": "Неверно", "valid": false},
+        {"text": "Тоже Неверно", "valid": false},
+        {"text": "Верно", "valid": true},
+        {"text": "Опять Неверно", "valid": false}
+      ]
     }]},
     {"title": "тест2",
     "timeLimit": 3600,

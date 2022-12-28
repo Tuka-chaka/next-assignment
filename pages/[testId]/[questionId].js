@@ -16,22 +16,28 @@ const id = router.query.questionId
 
 
   const submitToMongo = (value) => {
-    console.log(id)
-    setResults(...results, [{id: id, answer: value, correctAnswer: test.questions[id].answers.find(answer => answer.valid).text}])
-    sendResults(value)
+    console.log(value)
+    new Promise((resolve) => {
+      resolve(setResults([...results, {id: id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text}]))
+    }).then(sendResults(value))
   }
 
+  const testSubmit = (value) => {
+    setResults(...results, {id: id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text})
+    console.log(results)
+    console.log({id: id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text})
+  }
+
+
   const sendResults = async (value) => {
-    console.log(test.title)
     let res = await fetch("http://localhost:3000/api/sendResult", {
       method: "POST",
       body: JSON.stringify({
         title: test.title,
-        result: results,
+        result: [...results, {id: id, answer: value, correctAnswer: activeQuestion.answers.find(answer => answer.valid).text}],
       })
     })
-    res = await res.json();
-    console.log(res)
+    res.json().then(submitQuestion())
     }
 
 
@@ -56,7 +62,7 @@ const id = router.query.questionId
       <div className={styles.container__inner}>
       <TestHeader testTheme={test.title} questionNumber={test.questions.findIndex((element) => element.text == activeQuestion.text) + 1 + '/' + test.questions.length}/>
       <Timer question={activeQuestion}/>
-      <Question question={activeQuestion} action={submitQuestion} onSubmit={(value) => submitToMongo(value)}/>
+      <Question question={activeQuestion} action={() => {}} onSubmit={(value) => submitToMongo(value)} isLast={!(id < test.questions.length)}/>
       </div>
     </div>
     :

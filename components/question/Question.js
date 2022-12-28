@@ -3,14 +3,15 @@ import styles from './Question.module.scss'
 import Button from '../buttons/Button'
 import { useState } from 'react'
 
-const Question = ({question, action, onSubmit}) => {
+const Question = ({question, action, onSubmit, isLast}) => {
 
   const [answer, setAnswer] = useState('')
   
   const submit = () => {
     onSubmit(answer)
-    action()
   }
+
+
 
   return (
     <div className={styles.question}>
@@ -18,7 +19,7 @@ const Question = ({question, action, onSubmit}) => {
         <Answers question={question} action={(value) => setAnswer(value)}/>
         <div className={styles.button__group}>
         <Button text={'Пропустить'} />
-        <Button text={'Ответить'} action={submit}/>
+        <Button text={isLast ? 'Завершить' : 'Ответить'} action={submit}/>
         </div>
     </div>
   )
